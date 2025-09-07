@@ -7,10 +7,11 @@
   <style>
     body {
       font-family: 'KodeMono', monospace;
-      background: orange;
+      background: rgb(204, 176, 68);
       margin: 0;
       padding: 0;
       color: #222;
+      transition: background 0.3s ease;
     }
     header {
       text-align: center;
@@ -34,7 +35,7 @@
       display: inline-block;
     }
     nav a:hover {
-      transform: scale(1.1);
+      transform: scale(1.15);
     }
     .btn {
       display: inline-block;
@@ -42,15 +43,16 @@
       padding: 1rem 2rem;
       border: none;
       border-radius: 8px;
-      background: linear-gradient(145deg, #1a1a1a, #4d3b2f);
+      background: rgb(142, 85, 0);
       color: #fff;
       font-size: 1.2rem;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, background 0.2s ease;
       text-decoration: none;
     }
     .btn:hover {
-      transform: scale(1.1);
+      transform: scale(1.2);
+      background: rgb(160, 100, 10);
     }
     section {
       max-width: 800px;
@@ -62,12 +64,13 @@
       margin-bottom: 1rem;
     }
     .card {
-      background: #fff;
+      background: rgb(142, 85, 0);
+      color: #fff;
       padding: 1rem;
       margin: 1rem 0;
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, background 0.3s ease;
     }
     .card:hover {
       transform: scale(1.05);
@@ -83,6 +86,22 @@
       font-family: 'KodeMono', monospace;
       font-size: 1rem;
       width: 100%;
+    }
+    /* Inline color options */
+    .color-options {
+      text-align: center;
+      margin: 2rem;
+      padding: 1rem;
+      background: rgba(255,255,255,0.2);
+      border-radius: 8px;
+    }
+    input[type="color"] {
+      margin: 0.5rem;
+      padding: 0;
+      width: 60px;
+      height: 40px;
+      border: none;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -139,10 +158,31 @@
     </div>
   </section>
 
+  <div class="color-options">
+    <h2>Customize Colors</h2>
+    <p>Pick your own background and button color:</p>
+    <label>Background: <input type="color" id="bgColor" value="#ccb044"></label>
+    <label>Buttons: <input type="color" id="btnColor" value="#8e5500"></label>
+  </div>
+
   <script>
     document.getElementById('helpBtn').addEventListener('click', function() {
       const message = encodeURIComponent(document.getElementById('helpMessage').value);
       window.location.href = `mailto:bondsen1sticker@gmail.com?subject=Help%20Request&body=${message}`;
+    });
+
+    // Color picker logic
+    const bgPicker = document.getElementById('bgColor');
+    const btnPicker = document.getElementById('btnColor');
+
+    bgPicker.addEventListener('input', function() {
+      document.body.style.background = bgPicker.value;
+    });
+
+    btnPicker.addEventListener('input', function() {
+      document.querySelectorAll('.btn, .card').forEach(el => {
+        el.style.background = btnPicker.value;
+      });
     });
   </script>
 </body>
