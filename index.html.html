@@ -5,12 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Banan Expierament — Gorilla Tag Fan Game</title>
   <meta name="description" content="Banan  Expierament is a gorilla tag fan game with active updates and a good staff team. It uses a unique method of movement called gorilla locomotion, where you move with your arms instead of a joystick. We feature awesome maps and cool surprises and escape." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'KodeMono';
+      src: url('KodeMono-VariableFont_wght.ttf') format('truetype');
+      font-weight: 100 900;
+      font-style: normal;
+    }
+
     :root {
-      --bg-gradient: linear-gradient(180deg, #fde68a, #ea580c);
+      --bg-color: #f59e0b;
       --panel: rgba(20, 20, 30, 0.7);
       --text: #fffaf0;
       --muted: #fcd34d;
@@ -18,13 +22,13 @@
       --ring: rgba(245, 158, 11, 0.35);
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; transition: transform 0.2s ease, box-shadow 0.2s ease; }
     html, body { height: 100%; }
     body {
       margin: 0;
-      font-family: 'Rubik', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      font-family: 'KodeMono', monospace;
       color: var(--text);
-      background: var(--bg-gradient);
+      background: var(--bg-color);
       line-height: 1.6;
     }
 
@@ -46,8 +50,9 @@
     }
     .logo img { width: 100%; height: 100%; object-fit: cover; }
     .brand h1 { font-size: 1.05rem; margin: 0; letter-spacing: .3px; }
-    nav a { color: var(--muted); text-decoration: none; margin-left: 18px; font-size: .95rem; }
-    nav a:hover { color: var(--text); }
+    nav a { color: var(--muted); text-decoration: none; margin-left: 18px; font-size: .95rem; display: inline-block; padding: 6px 8px; border-radius: 6px; }
+    nav a:hover { color: var(--text); transform: scale(1.08); box-shadow: 0 6px 20px var(--ring); }
+    nav a:active { transform: scale(1); box-shadow: none; }
 
     /* HERO */
     .hero { padding: 72px 0 40px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 42px; align-items: center; }
@@ -55,19 +60,21 @@
     .pitch { color: var(--muted); font-size: 1.05rem; }
     .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
     .btn { appearance: none; border: none; padding: 14px 22px; border-radius: 14px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: transform 0.15s ease, box-shadow 0.15s ease; }
-    .btn.primary { background: linear-gradient(180deg, #fcd34d, #f59e0b); color: #fff; box-shadow: 0 10px 30px var(--ring); }
+    .btn.primary { background: #1a1a1a; color: #fff; box-shadow: 0 10px 30px var(--ring); }
     .btn.ghost { background: #1a1a24; color: var(--text); border: 1px solid rgba(255,255,255,.06); }
-    .btn:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 12px 36px var(--ring); }
+    .btn:hover { transform: scale(1.08); box-shadow: 0 14px 40px var(--ring); }
+    .btn:active { transform: scale(1); box-shadow: 0 8px 20px var(--ring); }
 
     .showcase {
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0));
+      background: rgba(0,0,0,.25);
       border: 1px solid rgba(255,255,255,.08);
       border-radius: 18px; overflow: hidden; position: relative;
       box-shadow: 0 20px 60px rgba(0,0,0,.35);
     }
     .showcase .window { aspect-ratio: 16/10; width: 100%; background: linear-gradient(135deg, #20202a, #15151e); position: relative; }
     .tags { position: absolute; bottom: 12px; left: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
-    .tag { background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.08); padding: 6px 10px; border-radius: 12px; font-size: .8rem; color: #eaeaf4; }
+    .tag { background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.08); padding: 6px 10px; border-radius: 12px; font-size: .8rem; color: #eaeaf4; display: inline-block; }
+    .tag:hover { transform: scale(1.08); box-shadow: 0 6px 20px var(--ring); }
 
     /* FEATURES */
     .section { padding: 72px 0; }
@@ -75,20 +82,23 @@
     .kicker { text-transform: uppercase; letter-spacing: .18em; color: var(--brand); font-weight: 700; font-size: .85rem; }
 
     .grid-3 { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); margin-top: 26px; }
-    .card { background: var(--panel); border: 1px solid rgba(255,255,255,.06); border-radius: 16px; padding: 18px; }
+    .card { background: var(--panel); border: 1px solid rgba(255,255,255,.06); border-radius: 16px; padding: 18px; display: inline-block; }
+    .card:hover { transform: scale(1.05); box-shadow: 0 12px 30px var(--ring); }
     .card h4 { margin: 6px 0 6px; font-size: 1.1rem; }
     .card p { margin: 0; color: var(--muted); }
 
     /* ROADMAP */
     .timeline { position: relative; margin-top: 24px; }
-    .timeline::before { content: ""; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--brand), transparent); }
+    .timeline::before { content: ""; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: var(--brand); }
     .step { display: grid; grid-template-columns: 28px 1fr; gap: 12px; padding: 12px 0; }
     .dot { width: 24px; height: 24px; border-radius: 999px; background: var(--brand); box-shadow: 0 0 0 4px var(--ring); margin-top: 2px; }
-    .step h5 { margin: 2px 0 4px; font-size: 1rem; }
+    .step h5 { margin: 2px 0 4px; font-size: 1rem; display: inline-block; }
     .step p { margin: 0; color: var(--muted); }
+    .step:hover { transform: scale(1.05); box-shadow: 0 10px 25px var(--ring); border-radius: 8px; }
 
     /* FAQ */
-    details { background: var(--panel); border: 1px solid rgba(255,255,255,.08); padding: 14px 16px; border-radius: 14px; }
+    details { background: var(--panel); border: 1px solid rgba(255,255,255,.08); padding: 14px 16px; border-radius: 14px; display: inline-block; }
+    details:hover { transform: scale(1.05); box-shadow: 0 10px 25px var(--ring); }
     summary { cursor: pointer; font-weight: 600; }
     details p { margin: 6px 0 0; color: var(--muted); }
     .faq { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
@@ -129,8 +139,8 @@
         <h2>Move with your arms. Run the map. Escape the surprise.</h2>
         <p class="pitch">Banan  Expierament is a gorilla tag fan game with active updates and a good staff team. It uses a unique method of movement called "gorilla locomotion", where you move with your arms instead of a joystick. We feature awesome maps and cool surprises and escape.</p>
         <div class="cta">
-          <a class="btn primary" href="https://www.meta.com/en-gb/experiences/banan-expierament/25391130727153884">⬇️ Download</a>
-          <a class="btn ghost" href="https://discord.gg/kjAJPW9m9M">💬 Join Discord</a>
+          <a class="btn primary" href="https://www.meta.com/en-gb/experiences/banan-expierament/25391130727153884">Download</a>
+          <a class="btn ghost" href="https://discord.gg/kjAJPW9m9M">Join Discord</a>
         </div>
       </div>
       <div class="showcase" aria-hidden="true">
