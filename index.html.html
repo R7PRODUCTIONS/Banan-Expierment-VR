@@ -1,267 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Banan Expierament — Gorilla Tag Fan Game</title>
-  <meta name="description" content="Banan  Expierament is a gorilla tag fan game with active updates and a good staff team. It uses a unique method of movement called gorilla locomotion, where you move with your arms instead of a joystick. We feature awesome maps and cool surprises and escape." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Banan Expierament</title>
   <style>
-    @font-face {
-      font-family: 'KodeMono';
-      src: url('KodeMono-VariableFont_wght.ttf') format('truetype');
-      font-weight: 100 900;
-      font-style: normal;
-    }
-
-    :root {
-      --bg-color: #f59e0b;
-      --panel: rgba(20, 20, 30, 0.7);
-      --text: #fffaf0;
-      --muted: #fcd34d;
-      --brand: #f59e0b;
-      --ring: rgba(245, 158, 11, 0.35);
-    }
-
-    * { box-sizing: border-box; transition: transform 0.2s ease, box-shadow 0.2s ease; }
-    html, body { height: 100%; }
     body {
-      margin: 0;
       font-family: 'KodeMono', monospace;
-      color: var(--text);
-      background: var(--bg-color);
-      line-height: 1.6;
+      background: orange;
+      margin: 0;
+      padding: 0;
+      color: #222;
     }
-
-    .container { width: min(1100px, 92%); margin: 0 auto; }
-
-    /* NAV */
     header {
-      position: sticky; top: 0; z-index: 50;
-      backdrop-filter: blur(8px);
-      background: rgba(0,0,0,0.3);
-      border-bottom: 1px solid rgba(255,255,255,.06);
+      text-align: center;
+      padding: 2rem;
     }
-    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
-    .brand { display: flex; gap: 10px; align-items: center; text-decoration: none; color: var(--text); }
-    .logo {
-      width: 40px; height: 40px; border-radius: 12px; background: var(--brand);
-      display: grid; place-items: center; font-weight: 800; color: #1a1a1a; box-shadow: 0 8px 30px var(--ring);
-      overflow: hidden;
+    header img {
+      width: 100px;
+      display: block;
+      margin: 0 auto;
     }
-    .logo img { width: 100%; height: 100%; object-fit: cover; }
-    .brand h1 { font-size: 1.05rem; margin: 0; letter-spacing: .3px; }
-    nav a { color: var(--muted); text-decoration: none; margin-left: 18px; font-size: .95rem; display: inline-block; padding: 6px 8px; border-radius: 6px; }
-    nav a:hover { color: var(--text); transform: scale(1.08); box-shadow: 0 6px 20px var(--ring); }
-    nav a:active { transform: scale(1); box-shadow: none; }
-
-    /* HERO */
-    .hero { padding: 72px 0 40px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 42px; align-items: center; }
-    .hero h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; margin: 0 0 12px; }
-    .pitch { color: var(--muted); font-size: 1.05rem; }
-    .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
-    .btn { appearance: none; border: none; padding: 14px 22px; border-radius: 14px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: transform 0.15s ease, box-shadow 0.15s ease; }
-    .btn.primary { background: #1a1a1a; color: #fff; box-shadow: 0 10px 30px var(--ring); }
-    .btn.ghost { background: #1a1a24; color: var(--text); border: 1px solid rgba(255,255,255,.06); }
-    .btn:hover { transform: scale(1.08); box-shadow: 0 14px 40px var(--ring); }
-    .btn:active { transform: scale(1); box-shadow: 0 8px 20px var(--ring); }
-
-    .showcase {
-      background: rgba(0,0,0,.25);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 18px; overflow: hidden; position: relative;
-      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    nav {
+      text-align: center;
+      margin-bottom: 2rem;
     }
-    .showcase .window { aspect-ratio: 16/10; width: 100%; background: linear-gradient(135deg, #20202a, #15151e); position: relative; }
-    .tags { position: absolute; bottom: 12px; left: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
-    .tag { background: rgba(0,0,0,.35); border: 1px solid rgba(255,255,255,.08); padding: 6px 10px; border-radius: 12px; font-size: .8rem; color: #eaeaf4; display: inline-block; }
-    .tag:hover { transform: scale(1.08); box-shadow: 0 6px 20px var(--ring); }
-
-    /* FEATURES */
-    .section { padding: 72px 0; }
-    .section h3 { font-size: clamp(1.4rem, 2.6vw, 2rem); margin: 0 0 10px; }
-    .kicker { text-transform: uppercase; letter-spacing: .18em; color: var(--brand); font-weight: 700; font-size: .85rem; }
-
-    .grid-3 { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); margin-top: 26px; }
-    .card { background: var(--panel); border: 1px solid rgba(255,255,255,.06); border-radius: 16px; padding: 18px; display: inline-block; }
-    .card:hover { transform: scale(1.05); box-shadow: 0 12px 30px var(--ring); }
-    .card h4 { margin: 6px 0 6px; font-size: 1.1rem; }
-    .card p { margin: 0; color: var(--muted); }
-
-    /* ROADMAP */
-    .timeline { position: relative; margin-top: 24px; }
-    .timeline::before { content: ""; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: var(--brand); }
-    .step { display: grid; grid-template-columns: 28px 1fr; gap: 12px; padding: 12px 0; }
-    .dot { width: 24px; height: 24px; border-radius: 999px; background: var(--brand); box-shadow: 0 0 0 4px var(--ring); margin-top: 2px; }
-    .step h5 { margin: 2px 0 4px; font-size: 1rem; display: inline-block; }
-    .step p { margin: 0; color: var(--muted); }
-    .step:hover { transform: scale(1.05); box-shadow: 0 10px 25px var(--ring); border-radius: 8px; }
-
-    /* FAQ */
-    details { background: var(--panel); border: 1px solid rgba(255,255,255,.08); padding: 14px 16px; border-radius: 14px; display: inline-block; }
-    details:hover { transform: scale(1.05); box-shadow: 0 10px 25px var(--ring); }
-    summary { cursor: pointer; font-weight: 600; }
-    details p { margin: 6px 0 0; color: var(--muted); }
-    .faq { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
-
-    /* FOOTER */
-    footer { padding: 40px 0 70px; color: var(--muted); font-size: .95rem; }
-    .small { font-size: .85rem; }
-
-    /* RESPONSIVE */
-    @media (max-width: 920px) {
-      .hero { grid-template-columns: 1fr; }
-      .grid-3 { grid-template-columns: 1fr; }
-      .faq { grid-template-columns: 1fr; }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      color: #222;
+      transition: transform 0.2s ease;
+      display: inline-block;
+    }
+    nav a:hover {
+      transform: scale(1.1);
+    }
+    .btn {
+      display: inline-block;
+      margin: 1rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(145deg, #1a1a1a, #4d3b2f);
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      text-decoration: none;
+    }
+    .btn:hover {
+      transform: scale(1.1);
+    }
+    section {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .card {
+      background: #fff;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .help-box {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+      padding: 0.5rem;
+      font-family: 'KodeMono', monospace;
+      font-size: 1rem;
+      width: 100%;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="container nav">
-      <a class="brand" href="#">
-        <div class="logo" aria-hidden="true"><img src="New Project - 2025-08-25T120656.212.png" alt="Banan Expierament Logo"></div>
-        <h1>Banan Expierament</h1>
-      </a>
-      <nav>
-        <a href="#features">Features</a>
-        <a href="#roadmap">Roadmap</a>
-        <a href="#faq">FAQ</a>
-        <a href="#download" class="btn ghost" style="padding:8px 12px;">Download</a>
-      </nav>
-    </div>
+    <img src="New Project - 2025-08-25T120656.212.png" alt="Banan Expierament Logo">
+    <h1>Banan Expierament</h1>
+    <p>A Gorilla Tag fan game with unique movement, awesome maps, and cool surprises.</p>
+    <a class="btn" href="https://www.meta.com/en-gb/experiences/banan-expierament/25391130727153884">Download on Meta Quest</a>
   </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="container hero" id="home" aria-label="Banan Expierament hero">
-      <div>
-        <span class="kicker">Gorilla Tag Fan Game</span>
-        <h2>Move with your arms. Run the map. Escape the surprise.</h2>
-        <p class="pitch">Banan  Expierament is a gorilla tag fan game with active updates and a good staff team. It uses a unique method of movement called "gorilla locomotion", where you move with your arms instead of a joystick. We feature awesome maps and cool surprises and escape.</p>
-        <div class="cta">
-          <a class="btn primary" href="https://www.meta.com/en-gb/experiences/banan-expierament/25391130727153884">Download</a>
-          <a class="btn ghost" href="https://discord.gg/kjAJPW9m9M">Join Discord</a>
-        </div>
-      </div>
-      <div class="showcase" aria-hidden="true">
-        <div class="window">
-          <div class="tags">
-            <span class="tag">Gorilla Locomotion</span>
-            <span class="tag">Active Updates</span>
-            <span class="tag">Surprise Escape</span>
-            <span class="tag">Awesome Maps</span>
-          </div>
-        </div>
-      </div>
-    </section>
+  <nav>
+    <a href="#features">Features</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#faq">FAQ</a>
+    <a href="#help">Help</a>
+  </nav>
 
-    <!-- FEATURES -->
-    <section class="section container" id="features">
-      <span class="kicker">Features</span>
-      <h3>Everything you love about tag — reimagined.</h3>
-      <div class="grid-3">
-        <article class="card">
-          <h4>Gorilla Locomotion</h4>
-          <p>Push off the world using your arms to run, climb, and vault. No joysticks, just movement.</p>
-        </article>
-        <article class="card">
-          <h4>Active Updates</h4>
-          <p>Live patches, new content drops, and seasonal events keep the game fresh.</p>
-        </article>
-        <article class="card">
-          <h4>Good Staff Team</h4>
-          <p>Moderators and devs who listen. Report issues, suggest features, get answers fast.</p>
-        </article>
-        <article class="card">
-          <h4>Awesome Maps</h4>
-          <p>Dive into creative maps built for flow and exploration.</p>
-        </article>
-        <article class="card">
-          <h4>Surprises & Escape</h4>
-          <p>Secrets, shortcuts, and clutch escapes. Explore to unlock hidden routes.</p>
-        </article>
-        <article class="card">
-          <h4>Community Driven</h4>
-          <p>Polls, playtests, and creator events shape what ships next.</p>
-        </article>
-      </div>
-    </section>
+  <section id="features">
+    <h2>Features</h2>
+    <div class="card">Unique Gorilla Locomotion</div>
+    <div class="card">Active updates & dedicated staff</div>
+    <div class="card">Fun maps and secrets to discover</div>
+  </section>
 
-    <!-- ROADMAP -->
-    <section class="section container" id="roadmap">
-      <span class="kicker">Roadmap</span>
-      <h3>What we're building next</h3>
-      <div class="timeline" aria-label="Development roadmap">
-        <div class="step">
-          <div class="dot" aria-hidden="true"></div>
-          <div>
-            <h5>Dreamcore Room</h5>
-            <p>A surreal, dreamy environment to explore and climb through.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="dot" aria-hidden="true"></div>
-          <div>
-            <h5>Cosmetics Shop</h5>
-            <p>Unlock and purchase fun cosmetics to express your style.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+  <section id="roadmap">
+    <h2>Roadmap</h2>
+    <div class="card">Dreamcore Room (Coming Soon)</div>
+    <div class="card">Cosmetics Shop (Coming Soon)</div>
+  </section>
 
-    <!-- FAQ -->
-    <section class="section container" id="faq">
-      <span class="kicker">FAQ</span>
-      <h3>Got questions?</h3>
-      <div class="faq">
-        <details>
-          <summary>Is Banan Expierament free?</summary>
-          <p>Yes, the base game is free to play. Optional cosmetics support development.</p>
-        </details>
-        <details>
-          <summary>What headsets are supported?</summary>
-          <p>Banan Expierament is available on Meta Quest 2 and Meta Quest 3 via the Meta Store. SteamVR and PC VR are not supported.</p>
-        </details>
-        <details>
-          <summary>How do updates work?</summary>
-          <p>We announce changes in Discord and ship patches regularly. Join playtests to try features early.</p>
-        </details>
-        <details>
-          <summary>Where can I report bugs or appeal a ban?</summary>
-          <p>Use the #support channel in Discord for tickets. Our staff team responds quickly.</p>
-        </details>
-      </div>
-    </section>
-
-    <!-- DOWNLOAD / COMMUNITY -->
-    <section class="section container" id="download">
-      <span class="kicker">Play Now</span>
-      <h3>Ready to swing in?</h3>
-      <div class="grid-3">
-        <article class="card">
-          <h4>Meta Quest</h4>
-          <p>Get Banan Expierament directly from the Meta Store for Quest 2 and Quest 3.</p>
-          <p><a class="btn primary" href="https://www.meta.com/en-gb/experiences/banan-expierament/25391130727153884">Download on Meta</a></p>
-        </article>
-        <article class="card" id="discord">
-          <h4>Join the Discord</h4>
-          <p>Patch notes, events, LFG, and support tickets live here.</p>
-          <p><a class="btn ghost" href="https://discord.gg/kjAJPW9m9M">Open Discord</a></p>
-        </article>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>© <span id="year"></span> Banan Expierament. Community-made fan project inspired by Gorilla Tag.</p>
-      <p class="small">This project is not affiliated with or endorsed by Another Axiom LLC. All trademarks are property of their respective owners.</p>
+  <section id="faq">
+    <h2>FAQ</h2>
+    <div class="card">
+      <strong>What platforms are supported?</strong>
+      <p>Banan Expierament is available on Meta Quest 2 & 3 via the Meta Store.</p>
     </div>
-  </footer>
+    <div class="card">
+      <strong>How do I move in the game?</strong>
+      <p>You move using your arms with Gorilla Locomotion instead of a joystick.</p>
+    </div>
+    <div class="card">
+      <strong>Is the game free?</strong>
+      <p>Yes, Banan Expierament is free to play.</p>
+    </div>
+  </section>
+
+  <section id="help">
+    <h2>Need Help?</h2>
+    <p>Send us a message if you need help:</p>
+    <div class="help-box">
+      <textarea id="helpMessage" placeholder="Enter your message..."></textarea><br>
+      <a id="helpBtn" class="btn" href="#">Send Help Request</a>
+    </div>
+  </section>
 
   <script>
-    // Set current year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('helpBtn').addEventListener('click', function() {
+      const message = encodeURIComponent(document.getElementById('helpMessage').value);
+      window.location.href = `mailto:bondsen1sticker@gmail.com?subject=Help%20Request&body=${message}`;
+    });
   </script>
 </body>
 </html>
